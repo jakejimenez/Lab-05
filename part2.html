@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Lab 5 - Part 2</title>
+	
+	<link rel="stylesheet" href="https://unpkg.com/purecss@2.0.5/build/pure-min.css" integrity="sha384-LTIDeidl25h2dPxrB2Ekgc9c7sEC3CWGM6HeFmuDNUjX76Ert4Z4IY714dhZHPLd" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+
+	<style>
+		#resultDiv {
+			visibility: hidden;
+		}
+	</style>
+</head>
+<body>
+	<h1>Calculator</h1>
+	<label>Input #1 <input id="input1" type="text"></label>
+	<label>Input #2 <input id="input2" type="text"></label>
+	<input class="pure-button pure-button-primary" type="button" value="add">
+	<input class="pure-button pure-button-primary" type="button" value="subtract">
+	<input class="pure-button pure-button-primary" type="button" value="multiply">
+	<input class="pure-button pure-button-primary" type="button" value="divide"> 
+	<div id="resultDiv"><hr>Operator: <span id="operator"></span><hr>Result:<span id="result"></span><hr><input class="pure-button pure-button-primary" type="button" value="clear"></div>
+	<script>
+
+		// Event listener for clear
+		$('input[value="clear"]').click(function() {
+			$("#input1").val("");
+			$("#input2").val("");
+			$("#operator").text("");
+			$("#result").text("");
+
+			$("#resultDiv").css("visibility", "hidden");
+		})
+
+		// Add button
+		$('input[value="add"]').filter('input[type="button"]').click(function () {
+			var inputOne = Number($("#input1").val());
+			var inputTwo = Number($("#input2").val());
+
+			$("#resultDiv").css("visibility", "visible");
+
+			var result = inputOne + inputTwo; // Compute additive result
+			$("#operator").text("+"); // Change text of operator to addition
+			$("#result").text(result); // Show result
+		});
+
+		// Subtract button
+		$('input[value="subtract"]').filter('input[type="button"]').click(function () {
+			var inputOne = Number($("#input1").val());
+			var inputTwo = Number($("#input2").val());
+
+			$("#resultDiv").css("visibility", "visible");
+
+			var result = inputOne - inputTwo; // Compute subtitive result
+			$("#operator").text("-"); // Change text of operator to addition
+			$("#result").text(result); // Show result
+		});
+
+
+		// Multiply button
+		$('input[value="multiply"]').filter('input[type="button"]').click(function () {
+			var inputOne = Number($("#input1").val());
+			var inputTwo = Number($("#input2").val());
+
+			$("#resultDiv").css("visibility", "visible");
+
+			var result = inputOne * inputTwo; // Compute multiplicative result
+			$("#operator").text("*"); // Change text of operator to addition
+			$("#result").text(result); // Show result
+		});
+
+
+		// Divide button
+		$('input[value="divide"]').filter('input[type="button"]').click(function () {
+			var inputOne = Number($("#input1").val());
+			var inputTwo = Number($("#input2").val());
+
+			$("#resultDiv").css("visibility", "visible");
+
+			var quotient = Math.floor(inputOne/inputTwo);
+			var remainder = inputOne % inputTwo;
+
+			var result = "Quotient: " + quotient + " | Remainder:" + remainder // Compute divisive result
+			$("#operator").text("/"); // Change text of operator to addition
+			$("#result").text(result); // Show result
+		});
+
+	</script>
+</body>
+</html>
